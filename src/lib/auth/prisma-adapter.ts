@@ -131,7 +131,7 @@ export function PrismaAdapter(
         emailVerified: null,
       }
     },
-    async linkAccount(account: Account) {
+    async linkAccount(account) {
       await prisma.account.create({
         data: {
           user_id: account.userId,
