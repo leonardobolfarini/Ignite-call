@@ -1,5 +1,6 @@
 import { Adapter } from 'next-auth/adapters'
 import { prisma } from '../prisma'
+import { User } from '@prisma/client'
 import { NextApiRequest, NextApiResponse, NextPageContext } from 'next'
 import { parseCookies, destroyCookie } from 'nookies'
 
@@ -9,6 +10,7 @@ export function PrismaAdapter(
 ): Adapter {
   return {
     async createUser(user) {
+      const user = user as User
       const { '@ignitecall:userId': userIdOnCookies } = parseCookies({ req })
 
       if (!userIdOnCookies) {
